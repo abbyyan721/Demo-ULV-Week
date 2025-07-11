@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwingPro - Improve Your Golf Swing with AI</title>
+    <title>SwingPro Demo - AI-Powered Golf Swing Analysis</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -41,7 +41,7 @@
                     <p>Upload your swing video and get personalized feedback to match the technique of your favorite professional golfer. Transform your game with cutting-edge AI technology.</p>
                     <div class="hero-buttons">
                         <a href="#golf-analysis" class="btn-primary">Try It Now</a>
-                        <a href="#cta" class="btn-primary" style="display:none;">Start Improving Today</a>
+                        <a href="#golf-analysis" class="btn-primary">Start Improving Today</a>
                         <a href="#how-it-works" class="btn-outline">Learn How It Works</a>
                     </div>
                 </div>
@@ -157,7 +157,9 @@
                 <h2>Try It Now: Compare Your Swing</h2>
                 <p>Choose a pro, upload your swing, and get instant AI feedback!</p>
             </div>
-            <div class="golf-analysis-card" style="max-width:600px;margin:0 auto;background:white;border-radius:20px;box-shadow:0 10px 30px rgba(115,130,144,0.08);padding:2.5rem 2rem 2rem 2rem;">
+            
+            <!-- Analysis Form -->
+            <div id="analysisFormContainer" class="golf-analysis-card" style="max-width:600px;margin:0 auto;background:white;border-radius:20px;box-shadow:0 10px 30px rgba(115,130,144,0.08);padding:2.5rem 2rem 2rem 2rem;">
                 <form id="analysisForm">
                     <div class="form-step" style="margin-bottom:2rem;">
                         <label for="proSelect"><strong>1. Choose Your Pro</strong></label>
@@ -180,6 +182,36 @@
                         <button type="submit" class="btn-primary btn-large">Get AI Analysis</button>
                     </div>
                 </form>
+            </div>
+            
+            <!-- Results Section (initially hidden) -->
+            <div id="analysisResults" class="analysis-results" style="display:none;max-width:1000px;margin:2rem auto;">
+                <div class="results-header" style="text-align:center;margin-bottom:2rem;">
+                    <h3 style="color:var(--celadon);font-size:1.8rem;margin-bottom:0.5rem;">Your AI Analysis Results</h3>
+                    <p style="color:var(--slate-gray);">See how your swing compares to your selected pro!</p>
+                </div>
+                
+                <div class="results-content" style="background:white;border-radius:20px;box-shadow:0 10px 30px rgba(115,130,144,0.08);padding:2.5rem;margin-bottom:2rem;">
+                    <div class="videos-comparison" style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:flex-start;margin-bottom:2.5rem;">
+                        <div style="flex:1;min-width:260px;text-align:center;">
+                            <h4 style="color:var(--celadon);margin-bottom:1rem;">Your Swing</h4>
+                            <video id="userVideoResult" controls style="max-width:100%;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);"></video>
+                        </div>
+                        <div style="flex:1;min-width:260px;text-align:center;">
+                            <h4 style="color:var(--celadon);margin-bottom:1rem;">Pro's Swing</h4>
+                            <div id="proInfoResult"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-feedback" style="background:var(--nyanza);padding:2rem;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                        <div id="feedbackContent"></div>
+                    </div>
+                </div>
+                
+                <div class="results-actions" style="text-align:center;">
+                    <button id="tryAnotherBtn" class="btn-primary btn-large" style="margin-right:1rem;">Try Another Swing</button>
+                    <button id="downloadResultsBtn" class="btn-outline btn-large">Download Results</button>
+                </div>
             </div>
         </div>
     </section>
@@ -242,11 +274,11 @@
     <section id="cta" class="cta">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Transform Your Golf Game?</h2>
-                <p>Join thousands of golfers who have already improved their swing with AI-powered analysis. Start your journey to a better game today.</p>
+                <h2>Ready to Try AI-Powered Swing Analysis?</h2>
+                <p>Experience the power of AI-powered golf swing analysis. Upload your swing video and get instant feedback comparing your technique to professional golfers.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn-primary btn-large">Start Free Trial</a>
-                    <a href="#" class="btn-outline btn-large">Watch Demo</a>
+                    <a href="#golf-analysis" class="btn-primary btn-large">Try AI Analysis Now</a>
+                    <a href="#how-it-works" class="btn-outline btn-large">Learn How It Works</a>
                 </div>
             </div>
         </div>
@@ -260,7 +292,7 @@
                     <i class="fas fa-golf-ball"></i>
                     <span>SwingPro</span>
                 </div>
-                <p class="copyright">&copy; 2024 SwingPro. All rights reserved. Transform your golf game with AI-powered swing analysis.</p>
+                <p class="copyright">&copy; 2024 SwingPro Demo. AI-powered golf swing analysis project. Upload your swing video and get instant feedback comparing your technique to professional golfers.</p>
             </div>
         </div>
     </footer>

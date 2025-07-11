@@ -1,10 +1,13 @@
 /* Color Palette */
 :root {
-    --delft-blue: #3A405A;
-    --champagne-pink: #F9DEC9;
-    --powder-blue: #99B2DD;
-    --melon: #E9AFA3;
-    --umber: #685044;
+    --black-olive: #212922;
+    --brunswick-green: #294936;
+    --feldgrau: #3E6259;
+    --viridian: #5B8266;
+    --celadon: #AEF6C7;
+    --powder-blue: #B0E0E6;
+    --nyanza: #E8F5E8;
+    --slate-gray: #6B7280;
 }
 
 /* Reset and Base Styles */
@@ -17,8 +20,8 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: var(--delft-blue);
-    background: var(--champagne-pink);
+    color: var(--celadon);
+    background: var(--black-olive);
     overflow-x: hidden;
 }
 
@@ -34,7 +37,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(249, 222, 201, 0.95); /* champagne pink */
+    background: var(--brunswick-green);
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem 0;
@@ -53,12 +56,12 @@ body {
     gap: 0.5rem;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--powder-blue);
+    color: var(--celadon);
 }
 
 .logo i {
     font-size: 1.8rem;
-    color: var(--melon);
+    color: var(--viridian);
 }
 
 .nav-list {
@@ -70,25 +73,26 @@ body {
 
 .nav-list a {
     text-decoration: none;
-    color: var(--delft-blue);
+    color: var(--celadon);
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .nav-list a:hover {
-    color: var(--powder-blue);
+    color: var(--viridian);
 }
 
 .btn-secondary {
-    background: var(--powder-blue);
-    color: white !important;
+    background: var(--viridian);
+    color: var(--black-olive) !important;
     padding: 0.5rem 1rem;
     border-radius: 25px;
     transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background: var(--delft-blue);
+    background: var(--feldgrau);
+    color: var(--celadon) !important;
     transform: translateY(-2px);
 }
 
@@ -101,7 +105,7 @@ body {
 /* Hero Section */
 .hero {
     padding: 120px 0 80px;
-    background: linear-gradient(135deg, var(--champagne-pink) 0%, var(--powder-blue) 100%);
+    background: linear-gradient(135deg, var(--black-olive) 0%, var(--feldgrau) 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -119,12 +123,12 @@ body {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    color: var(--powder-blue);
+    color: var(--celadon);
 }
 
 .hero-text p {
     font-size: 1.2rem;
-    color: var(--delft-blue);
+    color: var(--celadon);
     margin-bottom: 2rem;
     line-height: 1.8;
 }
@@ -136,8 +140,8 @@ body {
 }
 
 .btn-primary {
-    background: var(--powder-blue);
-    color: white;
+    background: var(--viridian);
+    color: var(--black-olive) !important;
     padding: 1rem 2rem;
     border-radius: 50px;
     text-decoration: none;
@@ -147,27 +151,27 @@ body {
 }
 
 .btn-primary:hover {
-    background: var(--delft-blue);
-    color: white;
+    background: var(--feldgrau);
+    color: var(--celadon) !important;
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(153, 178, 221, 0.3);
+    box-shadow: 0 10px 25px rgba(108, 145, 233, 0.3);
 }
 
 .btn-outline {
-    border: 2px solid var(--powder-blue);
-    color: var(--powder-blue);
+    border: 2px solid var(--viridian);
+    color: var(--viridian);
     padding: 1rem 2rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
     display: inline-block;
-    background: transparent;
+    background: var(--black-olive);
 }
 
 .btn-outline:hover {
-    background: var(--powder-blue);
-    color: white;
+    background: var(--viridian);
+    color: var(--black-olive);
     transform: translateY(-3px);
 }
 
@@ -182,7 +186,7 @@ body {
 .golf-swing-animation {
     width: 200px;
     height: 200px;
-    background: linear-gradient(135deg, var(--powder-blue), var(--melon));
+    background: linear-gradient(135deg, var(--viridian), var(--celadon));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -209,7 +213,7 @@ body {
     gap: 0.5rem;
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--delft-blue);
+    color: var(--celadon);
     box-shadow: 0 5px 15px rgba(115, 130, 144, 0.1);
 }
 
@@ -232,13 +236,13 @@ body {
 .section-header h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--powder-blue);
+    color: var(--celadon);
     margin-bottom: 1rem;
 }
 
 .section-header p {
     font-size: 1.1rem;
-    color: var(--delft-blue);
+    color: var(--celadon);
     max-width: 600px;
     margin: 0 auto;
 }
@@ -246,7 +250,7 @@ body {
 /* Features Section */
 .features {
     padding: 80px 0;
-    background: var(--melon);
+    background: var(--feldgrau);
 }
 
 .features-grid {
@@ -256,23 +260,23 @@ body {
 }
 
 .feature-card {
-    background: white;
+    background: var(--brunswick-green);
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(58,64,90,0.08);
+    box-shadow: 0 10px 30px rgba(33,41,34,0.08);
     transition: all 0.3s ease;
-    border: 1px solid var(--champagne-pink);
+    border: 1px solid var(--feldgrau);
 }
 
 .feature-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(58,64,90,0.15);
+    box-shadow: 0 20px 40px rgba(33,41,34,0.15);
 }
 
 .feature-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--powder-blue), var(--melon));
+    background: linear-gradient(135deg, var(--viridian), var(--celadon));
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -288,19 +292,19 @@ body {
 .feature-card h3 {
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--powder-blue);
+    color: var(--celadon);
     margin-bottom: 1rem;
 }
 
 .feature-card p {
-    color: var(--delft-blue);
+    color: var(--celadon);
     line-height: 1.6;
 }
 
 /* How It Works Section */
 .how-it-works {
     padding: 80px 0;
-    background: linear-gradient(135deg, var(--melon) 0%, var(--champagne-pink) 100%);
+    background: linear-gradient(135deg, var(--feldgrau) 0%, var(--black-olive) 100%);
 }
 
 .steps-container {
@@ -319,7 +323,7 @@ body {
 .step-number {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--delft-blue), var(--powder-blue));
+    background: linear-gradient(135deg, var(--black-olive), var(--brunswick-green));
     color: white;
     border-radius: 50%;
     display: flex;
@@ -333,19 +337,19 @@ body {
 .step-content h3 {
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--powder-blue);
+    color: var(--celadon);
     margin-bottom: 1rem;
 }
 
 .step-content p {
-    color: var(--delft-blue);
+    color: var(--celadon);
     line-height: 1.6;
 }
 
 /* Testimonials Section */
 .testimonials {
     padding: 80px 0;
-    background: var(--champagne-pink);
+    background: var(--brunswick-green);
 }
 
 .testimonials-grid {
@@ -355,22 +359,22 @@ body {
 }
 
 .testimonial-card {
-    background: white;
+    background: var(--feldgrau);
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(58,64,90,0.08);
-    border: 1px solid var(--melon);
+    box-shadow: 0 10px 30px rgba(33,41,34,0.08);
+    border: 1px solid var(--viridian);
     transition: all 0.3s ease;
 }
 
 .testimonial-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(58,64,90,0.15);
+    box-shadow: 0 15px 35px rgba(33,41,34,0.15);
 }
 
 .testimonial-content p {
     font-style: italic;
-    color: var(--delft-blue);
+    color: var(--celadon);
     line-height: 1.6;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
@@ -385,7 +389,7 @@ body {
 .author-avatar {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, var(--powder-blue), var(--melon));
+    background: linear-gradient(135deg, var(--viridian), var(--celadon));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -399,20 +403,20 @@ body {
 
 .author-info h4 {
     font-weight: 600;
-    color: var(--powder-blue);
+    color: var(--celadon);
     margin-bottom: 0.25rem;
 }
 
 .author-info span {
-    color: var(--delft-blue);
+    color: var(--celadon);
     font-size: 0.9rem;
 }
 
 /* CTA Section */
 .cta {
     padding: 80px 0;
-    background: linear-gradient(135deg, var(--delft-blue) 0%, var(--umber) 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--black-olive) 0%, var(--brunswick-green) 100%);
+    color: var(--celadon);
     text-align: center;
 }
 
@@ -445,8 +449,8 @@ body {
 
 /* Footer */
 .footer {
-    background: var(--umber);
-    color: white;
+    background: var(--black-olive);
+    color: var(--celadon);
     padding: 2rem 0;
     text-align: center;
 }
@@ -468,7 +472,7 @@ body {
 
 .footer-logo i {
     font-size: 1.5rem;
-    color: var(--melon);
+    color: var(--viridian);
 }
 
 .copyright {
@@ -580,12 +584,60 @@ html {
 }
 
 .golf-analysis-card {
-    background: white;
+    background: var(--feldgrau);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(58,64,90,0.08);
+    box-shadow: 0 10px 30px rgba(33,41,34,0.18);
     padding: 2.5rem 2rem 2rem 2rem;
 }
 
 .ai-feedback {
-    background: var(--champagne-pink);
+    background: var(--brunswick-green);
+    color: var(--celadon);
+}
+
+/* Analysis Results Styles */
+.analysis-results {
+    background: var(--black-olive);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.results-content {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(115,130,144,0.08);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.videos-comparison {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+.results-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.results-actions button {
+    margin: 0 0.5rem;
+}
+
+/* Responsive adjustments for results */
+@media (max-width: 768px) {
+    .videos-comparison {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .results-actions button {
+        margin: 0.5rem;
+        width: 100%;
+        max-width: 300px;
+    }
 } 

@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
     initCTAButtons();
     setupGolfAnalysisForm();
-    showResultsPage();
 });
 
 // Mobile Menu Functionality
@@ -110,7 +109,10 @@ function initCTAButtons() {
     
     ctaButtons.forEach(button => {
         button.addEventListener('click', function(e) {
-            e.preventDefault();
+            // Only prevent default if it's not a hash link
+            if (!this.getAttribute('href') || !this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+            }
             
             // Add click animation
             this.style.transform = 'scale(0.95)';
@@ -118,233 +120,22 @@ function initCTAButtons() {
                 this.style.transform = '';
             }, 150);
             
-            // Show demo modal or redirect (placeholder)
-            showDemoModal();
+            // If it's a hash link, let the smooth scrolling handle it
+            // Otherwise, scroll to the analysis section
+            if (!this.getAttribute('href') || !this.getAttribute('href').startsWith('#')) {
+                const analysisSection = document.getElementById('golf-analysis');
+                if (analysisSection) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = analysisSection.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
         });
     });
-}
-
-// Demo Modal Functionality
-function showDemoModal() {
-    // Create modal HTML
-    const modalHTML = `
-        <div class="demo-modal" id="demoModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Welcome to SwingPro Demo</h3>
-                    <button class="modal-close" onclick="closeDemoModal()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="demo-steps">
-                        <div class="demo-step">
-                            <div class="demo-step-icon">
-                                <i class="fas fa-user-friends"></i>
-                            </div>
-                            <h4>Choose Your Pro</h4>
-                            <p>Select from our library of professional golfers</p>
-                        </div>
-                        <div class="demo-step">
-                            <div class="demo-step-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <h4>Upload Your Swing</h4>
-                            <p>Record and upload your golf swing video</p>
-                        </div>
-                        <div class="demo-step">
-                            <div class="demo-step-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h4>Get AI Analysis</h4>
-                            <p>Receive personalized feedback and tips</p>
-                        </div>
-                    </div>
-                    <div class="demo-cta">
-                        <button class="btn-primary" onclick="startFreeTrial()">Start Free Trial</button>
-                        <p>No credit card required • 14-day free trial</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Add modal to page
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    
-    // Add modal styles
-    addModalStyles();
-    
-    // Show modal with animation
-    setTimeout(() => {
-        document.getElementById('demoModal').classList.add('show');
-    }, 10);
-}
-
-// Close Demo Modal
-function closeDemoModal() {
-    const modal = document.getElementById('demoModal');
-    if (modal) {
-        modal.classList.remove('show');
-        setTimeout(() => {
-            modal.remove();
-        }, 300);
-    }
-}
-
-// Start Free Trial Function
-function startFreeTrial() {
-    // Placeholder for free trial functionality
-    alert('Free trial functionality would be implemented here!');
-    closeDemoModal();
-}
-
-// Add Modal Styles
-function addModalStyles() {
-    const modalStyles = `
-        <style>
-            .demo-modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-            
-            .demo-modal.show {
-                opacity: 1;
-            }
-            
-            .modal-content {
-                background: white;
-                border-radius: 20px;
-                max-width: 600px;
-                width: 90%;
-                max-height: 90vh;
-                overflow-y: auto;
-                transform: scale(0.8);
-                transition: transform 0.3s ease;
-            }
-            
-            .demo-modal.show .modal-content {
-                transform: scale(1);
-            }
-            
-            .modal-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 2rem 2rem 1rem;
-                border-bottom: 1px solid #eee;
-            }
-            
-            .modal-header h3 {
-                color: #2d5a27;
-                font-size: 1.5rem;
-                font-weight: 600;
-            }
-            
-            .modal-close {
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                color: #666;
-                cursor: pointer;
-                padding: 0.5rem;
-                border-radius: 50%;
-                transition: all 0.3s ease;
-            }
-            
-            .modal-close:hover {
-                background: #f0f0f0;
-                color: #333;
-            }
-            
-            .modal-body {
-                padding: 2rem;
-            }
-            
-            .demo-steps {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 2rem;
-                margin-bottom: 2rem;
-            }
-            
-            .demo-step {
-                text-align: center;
-                padding: 1.5rem;
-                border-radius: 15px;
-                background: #f8faf9;
-                transition: all 0.3s ease;
-            }
-            
-            .demo-step:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            }
-            
-            .demo-step-icon {
-                width: 60px;
-                height: 60px;
-                background: linear-gradient(135deg, #4a7c59, #2d5a27);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 0 auto 1rem;
-            }
-            
-            .demo-step-icon i {
-                color: white;
-                font-size: 1.5rem;
-            }
-            
-            .demo-step h4 {
-                color: #2d5a27;
-                margin-bottom: 0.5rem;
-                font-weight: 600;
-            }
-            
-            .demo-step p {
-                color: #666;
-                font-size: 0.9rem;
-                line-height: 1.5;
-            }
-            
-            .demo-cta {
-                text-align: center;
-                padding-top: 1rem;
-                border-top: 1px solid #eee;
-            }
-            
-            .demo-cta p {
-                color: #666;
-                font-size: 0.9rem;
-                margin-top: 1rem;
-            }
-            
-            @media (max-width: 768px) {
-                .modal-content {
-                    width: 95%;
-                    margin: 1rem;
-                }
-                
-                .demo-steps {
-                    grid-template-columns: 1fr;
-                }
-            }
-        </style>
-    `;
-    
-    document.head.insertAdjacentHTML('beforeend', modalStyles);
 }
 
 // Add CSS for scroll animations
@@ -484,33 +275,248 @@ function setupGolfAnalysisForm() {
     }
 
     if (form) {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
             const pro = proSelect.value;
             const file = swingVideo.files[0];
             if (!pro || !file) return;
-            // Store pro and video in localStorage (video as dataURL)
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                localStorage.setItem('selectedPro', pro);
-                localStorage.setItem('swingVideo', evt.target.result);
-                window.location.href = 'results.html';
-            };
-            reader.readAsDataURL(file);
+
+            // Show loading indicator
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Analyzing...';
+            }
+
+            // Send video to backend with pro_name
+            const formData = new FormData();
+            formData.append('pro_name', proData[pro].name);
+            formData.append('video', file);
+            
+            try {
+                const response = await fetch('http://localhost:5001/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                if (result.error) {
+                    throw new Error(result.error);
+                }
+                
+                // Display results on the same page
+                displayAnalysisResults(result, pro, file);
+                
+            } catch (err) {
+                alert('Error analyzing swing: ' + err.message);
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get AI Analysis';
+                }
+            }
         });
     }
+}
+
+function displayAnalysisResults(result, proKey, file) {
+    const analysisFormContainer = document.getElementById('analysisFormContainer');
+    const analysisResults = document.getElementById('analysisResults');
+    const userVideoResult = document.getElementById('userVideoResult');
+    const proInfoResult = document.getElementById('proInfoResult');
+    const feedbackContent = document.getElementById('feedbackContent');
+    
+    const pro = proData[proKey];
+    if (!pro) return;
+    
+    // Hide form and show results
+    analysisFormContainer.style.display = 'none';
+    analysisResults.style.display = 'block';
+    
+    // Set user video
+    const videoUrl = URL.createObjectURL(file);
+    userVideoResult.src = videoUrl;
+    
+    // Set pro info
+    proInfoResult.innerHTML = `
+        <img src="${pro.img}" alt="${pro.name}" style="max-width:120px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:0.5rem;" />
+        <div style="margin-bottom:1rem;"><strong>${pro.name}</strong></div>
+        <a href="${pro.video}" target="_blank" class="btn-outline" style="display:inline-block;">View Pro Swing Video</a>
+    `;
+    
+    // Build feedback content
+    let feedbackHtml = '<h3 style="color:var(--powder-blue);margin-bottom:1rem;">AI Analysis & Feedback</h3>';
+    
+    // Add summary
+    if (result.summary) {
+        feedbackHtml += `<p style="font-size:1.2rem;font-weight:600;color:var(--celadon);margin-bottom:1.5rem;">${result.summary}</p>`;
+    }
+    
+    // Add session ID
+    if (result.session_id) {
+        feedbackHtml += `<p style="font-size:0.9rem;color:var(--slate-gray);margin-bottom:1rem;"><strong>Session ID:</strong> ${result.session_id}</p>`;
+    }
+    
+    // Add feedback section
+    if (result.feedback) {
+        feedbackHtml += '<h4 style="color:var(--celadon);margin-bottom:1rem;">Detailed Feedback:</h4>';
+        feedbackHtml += '<ul style="font-size:1.1rem;line-height:1.7;color:var(--slate-gray);margin-bottom:1.5rem;">';
+        Object.entries(result.feedback).forEach(([key, value]) => {
+            if (key !== 'overall_similarity') { // Skip overall_similarity as it's shown in summary
+                const displayKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                feedbackHtml += `<li><strong>${displayKey}:</strong> ${value}</li>`;
+            }
+        });
+        feedbackHtml += '</ul>';
+    }
+    
+    // Add metrics section
+    if (result.metrics) {
+        feedbackHtml += '<h4 style="color:var(--celadon);margin-bottom:1rem;">Technical Metrics:</h4>';
+        feedbackHtml += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;">';
+        Object.entries(result.metrics).forEach(([key, value]) => {
+            if (key !== 'overall_similarity') { // Skip overall_similarity as it's shown in summary
+                const displayKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                feedbackHtml += `<div style="background:white;padding:1rem;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="font-weight:600;color:var(--celadon);font-size:0.9rem;">${displayKey}</div>
+                    <div style="font-size:1.1rem;color:var(--slate-gray);">${typeof value === 'number' ? value.toFixed(3) : value}</div>
+                </div>`;
+            }
+        });
+        feedbackHtml += '</div>';
+    }
+    
+    feedbackContent.innerHTML = feedbackHtml;
+    
+    // Set up button event handlers
+    setupResultsButtons();
+    
+    // Scroll to results
+    analysisResults.scrollIntoView({ behavior: 'smooth' });
+}
+
+function setupResultsButtons() {
+    const tryAnotherBtn = document.getElementById('tryAnotherBtn');
+    const downloadResultsBtn = document.getElementById('downloadResultsBtn');
+    
+    if (tryAnotherBtn) {
+        tryAnotherBtn.addEventListener('click', function() {
+            // Reset form and show it again
+            const analysisFormContainer = document.getElementById('analysisFormContainer');
+            const analysisResults = document.getElementById('analysisResults');
+            const form = document.getElementById('analysisForm');
+            
+            // Reset form
+            form.reset();
+            document.getElementById('proPreview').innerHTML = '';
+            document.getElementById('videoPreview').style.display = 'none';
+            
+            // Show form, hide results
+            analysisFormContainer.style.display = 'block';
+            analysisResults.style.display = 'none';
+            
+            // Scroll to form
+            analysisFormContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    
+    if (downloadResultsBtn) {
+        downloadResultsBtn.addEventListener('click', function() {
+            // Create a text file with the analysis results
+            const resultsText = generateResultsText();
+            const blob = new Blob([resultsText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'swing-analysis-results.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    }
+}
+
+function generateResultsText() {
+    // This function would generate a text version of the results
+    // For now, return a simple message
+    return `SwingPro AI Analysis Results
+
+Thank you for using SwingPro AI Analysis!
+Your swing analysis has been completed successfully.
+
+To view detailed results, please check the web interface.
+Session ID: ${localStorage.getItem('sessionId') || 'N/A'}
+
+For more information, visit the SwingPro demo page.`;
 }
 
 function showResultsPage() {
     const resultsContent = document.getElementById('resultsContent');
     if (!resultsContent) return;
+    
     const proKey = localStorage.getItem('selectedPro');
     const videoData = localStorage.getItem('swingVideo');
+    const analysisResult = localStorage.getItem('analysisResult');
+    const sessionId = localStorage.getItem('sessionId');
+    
     const pro = proData[proKey];
-    if (!pro || !videoData) {
+    let analysis = null;
+    try {
+        analysis = analysisResult ? JSON.parse(analysisResult) : null;
+    } catch (e) {}
+    
+    if (!pro || !videoData || !analysis) {
         resultsContent.innerHTML = '<p style="color:red;">No analysis data found. Please go back and try again.</p>';
         return;
     }
+    
+    // Build analysis feedback using the new format
+    let feedbackHtml = '<h3 style="color:var(--powder-blue);margin-bottom:1rem;">AI Analysis & Feedback</h3>';
+    
+    // Add summary
+    if (analysis.summary) {
+        feedbackHtml += `<p style="font-size:1.2rem;font-weight:600;color:var(--celadon);margin-bottom:1.5rem;">${analysis.summary}</p>`;
+    }
+    
+    // Add session ID
+    if (sessionId) {
+        feedbackHtml += `<p style="font-size:0.9rem;color:var(--slate-gray);margin-bottom:1rem;"><strong>Session ID:</strong> ${sessionId}</p>`;
+    }
+    
+    // Add feedback section
+    if (analysis.feedback) {
+        feedbackHtml += '<h4 style="color:var(--celadon);margin-bottom:1rem;">Detailed Feedback:</h4>';
+        feedbackHtml += '<ul style="font-size:1.1rem;line-height:1.7;color:var(--slate-gray);margin-bottom:1.5rem;">';
+        Object.entries(analysis.feedback).forEach(([key, value]) => {
+            if (key !== 'overall_similarity') { // Skip overall_similarity as it's shown in summary
+                const displayKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                feedbackHtml += `<li><strong>${displayKey}:</strong> ${value}</li>`;
+            }
+        });
+        feedbackHtml += '</ul>';
+    }
+    
+    // Add metrics section
+    if (analysis.metrics) {
+        feedbackHtml += '<h4 style="color:var(--celadon);margin-bottom:1rem;">Technical Metrics:</h4>';
+        feedbackHtml += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;">';
+        Object.entries(analysis.metrics).forEach(([key, value]) => {
+            if (key !== 'overall_similarity') { // Skip overall_similarity as it's shown in summary
+                const displayKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                feedbackHtml += `<div style="background:white;padding:1rem;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                    <div style="font-weight:600;color:var(--celadon);font-size:0.9rem;">${displayKey}</div>
+                    <div style="font-size:1.1rem;color:var(--slate-gray);">${typeof value === 'number' ? value.toFixed(3) : value}</div>
+                </div>`;
+            }
+        });
+        feedbackHtml += '</div>';
+    }
+    
+    feedbackHtml += `<div style="margin-top:1.5rem;text-align:center;">
+        <a href="index.html#golf-analysis" class="btn-secondary">Try Another Swing</a>
+    </div>`;
+
     resultsContent.innerHTML = `
         <div class="results-flex" style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:flex-start;">
             <div style="flex:1;min-width:260px;text-align:center;">
@@ -523,17 +529,8 @@ function showResultsPage() {
                 <div><a href="${pro.video}" target="_blank" class="btn-outline" style="margin-top:0.5rem;display:inline-block;">View Pro Swing Video</a></div>
             </div>
         </div>
-        <div class="ai-feedback" style="margin-top:2.5rem;text-align:left;max-width:700px;margin-left:auto;margin-right:auto;background:var(--nyanza);padding:2rem;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-            <h3 style="color:var(--powder-blue);margin-bottom:1rem;">AI Analysis & Feedback</h3>
-            <ul style="font-size:1.1rem;line-height:1.7;color:var(--slate-gray);">
-                <li><strong>Backswing:</strong> Try to keep your left arm straighter for a more consistent arc.</li>
-                <li><strong>Hip Rotation:</strong> Increase your hip rotation for more power, similar to ${pro.name}.</li>
-                <li><strong>Follow Through:</strong> Finish your swing higher for better balance and control.</li>
-                <li><strong>Tempo:</strong> Your tempo is good! Keep it smooth and controlled.</li>
-            </ul>
-            <div style="margin-top:1.5rem;text-align:center;">
-                <a href="index.html#golf-analysis" class="btn-secondary">Try Another Swing</a>
-            </div>
+        <div class="ai-feedback" style="margin-top:2.5rem;text-align:left;max-width:800px;margin-left:auto;margin-right:auto;background:var(--nyanza);padding:2rem;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            ${feedbackHtml}
         </div>
     `;
 } 
