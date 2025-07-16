@@ -25,8 +25,9 @@ A demonstration project showcasing AI-powered golf swing analysis that compares 
    - Choose a professional golfer from the dropdown
    - Upload a video of your golf swing (MP4, AVI, MOV, or MKV format)
    - Click "Get AI Analysis" to receive instant feedback
-   - View detailed results directly on the same page, comparing your swing to the selected pro
-   - Use "Try Another Swing" to analyze a different video or "Download Results" to save your analysis
+   - You'll be automatically redirected to a dedicated results page with your analysis
+   - The results page displays detailed metrics, feedback, and comparison with your chosen pro
+   - Use "Try Another Swing" to analyze a different video
 
 ## Technical Details
 
@@ -40,7 +41,8 @@ A demonstration project showcasing AI-powered golf swing analysis that compares 
 ```
 Summer School AI/
 ├── app.py              # Flask backend server
-├── index.html          # Main frontend page with integrated results
+├── index.html          # Main frontend page
+├── results.html        # Dedicated results page
 ├── script.js           # Frontend JavaScript
 ├── styles.css          # Frontend styling
 ├── uploads/            # Temporary video uploads
